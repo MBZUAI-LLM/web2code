@@ -1,1 +1,1 @@
-# web2code
+Web2Code is a benchmark consisting of a new large-scale webpage-to-code dataset for instruction tuning and an evaluation framework for the webpage understanding and HTML code translation abilities of MLLMs.
