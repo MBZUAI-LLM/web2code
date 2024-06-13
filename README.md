@@ -10,14 +10,14 @@ Official implementation of **ShareGPT4V: Improving Large Multi-modal Models with
 - **Institutes**: Mohamed bin Zayed University of Artificial Intelligence
 - **Resources**: [[Paper]()] [[Project Page](https://mbzuai-llm.github.io/webpage2code/)] [[Web2Code Dataset]()]
 
-## 📜 News
+## News
 **[2024/6/5]** The [paper]([Web2Code.pdf]()) and [project page](https://mbzuai-llm.github.io/webpage2code/) are released!
 
-## ❤️ Acknowledgments
+## Acknowledgments
 - [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon. Thanks for their wonderful work.
-- [WebSRC](https://x-lance.github.io/WebSRC/): the amazing open-sourced large language model!
+- [WebSRC](https://x-lance.github.io/WebSRC/), [WebSight](https://huggingface.co/blog/websight), [Pix2Code](https://github.com/tonybeltramelli/pix2code): some high-quality web page and HTML code related dataset！
 
-## ✒️ Citation
+## Citation
 If you find our work helpful for your research, please consider giving a star ⭐ and citation 📝
 ```bibtex
 update soon
