@@ -1,8 +1,8 @@
-# Introduction
-Web2Code is a benchmark consisting of a new large-scale webpage-to-code dataset for instruction tuning and an evaluation framework for the webpage understanding and HTML code translation abilities of MLLMs.
-# Samples
-<table>
-    <tr>
-        <td><img src="./samples1.png" width = "1000" alt="sample1"></td>
-    </tr>
-</table>
+# Web2Code: A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs
+
+---
+
+Official implementation of **ShareGPT4V: Improving Large Multi-modal Models with Better Captions**.
+<p align="center">
+  <img src="./samples1.png" width = "1000" alt="sample1">
+</p>
