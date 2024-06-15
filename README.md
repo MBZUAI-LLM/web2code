@@ -24,4 +24,4 @@ update soon
 ```
 
 ## License
-![Data License](https://img.shields.io/badge/Data%20License-CC%20By%204.0-red.svg) **Usage and License Notices**: Usage and License Notices: The data is intended and licensed for research use only.  The dataset is CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
+![Data License](https://img.shields.io/badge/Data%20License-CC%20By%204.0-red.svg) **Usage and License Notices**: Usage and License Notices: The data is intended and licensed for research use only.  The dataset is CC BY 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
