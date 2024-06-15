@@ -8,7 +8,7 @@ Official implementation of **ShareGPT4V: Improving Large Multi-modal Models with
 </p>
 
 - **Institutes**: Mohamed bin Zayed University of Artificial Intelligence
-- **Resources**: [[Paper]()] [[Project Page](https://mbzuai-llm.github.io/webpage2code/)] [[Web2Code Dataset](https://huggingface.co/datasets/MBZUAI/Web2Code)]
+- **Resources**: [[Paper]()] [[Project Page](https://mbzuai-llm.github.io/webpage2code/)] [[Web2Code Dataset](https://huggingface.co/datasets/MBZUAI/Web2Code)][[Croissant](https://huggingface.co/api/datasets/the-Lin/Web2Code/croissant)]
 
 ## News
 **[2024/6/5]** The [paper]([Web2Code.pdf]()) and [project page](https://mbzuai-llm.github.io/webpage2code/) are released!
