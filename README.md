@@ -1,17 +1,19 @@
-# Web2Code: A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs
+# Web2Code
 
 ---
 
-Official implementation of **ShareGPT4V: Improving Large Multi-modal Models with Better Captions**.
-<p align="center">
-  <img src="./samples1.png" width = "1000" alt="sample1">
-</p>
+Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs]()**.
 
 - **Institutes**: Mohamed bin Zayed University of Artificial Intelligence
 - **Resources**: [[Paper]()] [[Project Page](https://mbzuai-llm.github.io/webpage2code/)] [[Web2Code Dataset](https://huggingface.co/datasets/MBZUAI/Web2Code)][[Croissant](https://huggingface.co/api/datasets/the-Lin/Web2Code/croissant)]
 
+
+<p align="center">
+  <img src="./samples1.png" width = "1000" alt="sample1">
+</p>
+
 ## News
-**[2024/6/5]** The [paper]([Web2Code.pdf]()) and [project page](https://mbzuai-llm.github.io/webpage2code/) are released!
+**[2024/6/27]** The [paper]([Web2Code.pdf]()) and [project page](https://mbzuai-llm.github.io/webpage2code/) are released!
 
 ## Acknowledgments
 - [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon. Thanks for their wonderful work.
