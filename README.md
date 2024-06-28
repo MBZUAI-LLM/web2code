@@ -1,15 +1,14 @@
 # Web2Code
 
----
 
 Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs]()**.
 
-- **Institutes**: Mohamed bin Zayed University of Artificial Intelligence
+- **Institute**: Mohamed bin Zayed University of Artificial Intelligence
 - **Resources**: [[Paper]()] [[Project Page](https://mbzuai-llm.github.io/webpage2code/)] [[Web2Code Dataset](https://huggingface.co/datasets/MBZUAI/Web2Code)][[Croissant](https://huggingface.co/api/datasets/the-Lin/Web2Code/croissant)]
 
 
 <p align="center">
-  <img src="./samples1.png" width = "1000" alt="sample1">
+  <img src="./assets/samples1.png" width = "1000" alt="sample1">
 </p>
 
 ## News
@@ -21,8 +20,13 @@ Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluati
 
 ## Citation
 If you find our work helpful for your research, please consider giving a star ⭐ and citation 📝
-```bibtex
-update soon
+
+```
+@article{web2code2024,
+  title={Web2Code: A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs},
+  journal={arXiv preprint},
+  year={2024}
+}
 ```
 
 ## License
