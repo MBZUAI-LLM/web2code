@@ -14,6 +14,19 @@ Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluati
 ## News
 **[2024/6/27]** The [paper]([Web2Code.pdf]()) and [project page](https://mbzuai-llm.github.io/webpage2code/) are released!
 
+## Evaluation Benchmark Suite
+
+Explore our comprehensive benchmarks for evaluating webpage-related tasks.
+
+### Webpage Code Generation Benchmark
+
+Set up your environment, generate webpage screenshots, and run evaluations efficiently. Get started here: [Webpage Code Generation Benchmark](/code_generation/README.md)
+
+### Webpage Understanding Benchmark
+
+Find clear instructions for setting up your environment, generating outputs, and running evaluations. Begin here: [Webpage Understanding Benchmark](/webpage_understanding/README.md)
+
+
 ## Acknowledgments
 - [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon. Thanks for their wonderful work.
 - [WebSRC](https://x-lance.github.io/WebSRC/), [WebSight](https://huggingface.co/blog/websight), [Pix2Code](https://github.com/tonybeltramelli/pix2code): some high-quality web page and HTML code related dataset！
