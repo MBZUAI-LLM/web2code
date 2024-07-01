@@ -1,10 +1,10 @@
 # Web2Code
 
 
-Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs]()**.
+Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs](https://arxiv.org/abs/2406.20098)**.
 
 - **Institute**: Mohamed bin Zayed University of Artificial Intelligence
-- **Resources**: [[Paper]()] [[Project Page](https://mbzuai-llm.github.io/webpage2code/)] [[Web2Code Dataset](https://huggingface.co/datasets/MBZUAI/Web2Code)][[Croissant](https://huggingface.co/api/datasets/the-Lin/Web2Code/croissant)]
+- **Resources**: [[Paper](https://arxiv.org/abs/2406.20098)] [[Project Page](https://mbzuai-llm.github.io/webpage2code/)] [[Web2Code Dataset](https://huggingface.co/datasets/MBZUAI/Web2Code)][[Croissant](https://huggingface.co/api/datasets/the-Lin/Web2Code/croissant)]
 
 
 <p align="center">
@@ -12,7 +12,7 @@ Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluati
 </p>
 
 ## News
-**[2024/6/27]** The [paper]([Web2Code.pdf]()) and [project page](https://mbzuai-llm.github.io/webpage2code/) are released!
+**[2024/6/27]** The [paper](https://arxiv.org/abs/2406.20098) and [project page](https://mbzuai-llm.github.io/webpage2code/) are released!
 
 ## Evaluation Benchmark Suite
 
@@ -37,7 +37,8 @@ If you find our work helpful for your research, please consider giving a star тн
 ```
 @article{web2code2024,
   title={Web2Code: A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs},
-  journal={arXiv preprint},
+  author={Sukmin Yun and Haokun Lin and Rusiru Thushara and Mohammad Qazim Bhat and Yongxin Wang and Zutao Jiang and Mingkai Deng and Jinhong Wang and Tianhua Tao and Junbo Li and Haonan Li and Preslav Nakov and Timothy Baldwin and Zhengzhong Liu and Eric P. Xing and Xiaodan Liang and Zhiqiang Shen},
+  journal={arXiv preprint arXiv:2406.20098},
   year={2024}
 }
 ```
