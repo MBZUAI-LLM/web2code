@@ -36,6 +36,8 @@ from llava.mm_utils import tokenizer_image_token
 
 from PIL import Image
 
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
 
 local_rank = None
 
@@ -162,18 +164,15 @@ def get_mm_adapter_state_maybe_zero_3(named_params, keys_to_match):
 
 def find_all_linear_names(model):
     cls = torch.nn.Linear
+    cls_conv2d = transformers.pytorch_utils.Conv1D
     lora_module_names = set()
     multimodal_keywords = ['mm_projector', 'vision_tower', 'vision_resampler']
     for name, module in model.named_modules():
-        # print(name, str(type(module)))
-
         if any(mm_keyword in name for mm_keyword in multimodal_keywords):
             continue
-        if isinstance(module, cls):
+        if isinstance(module, cls) or isinstance(module, cls_conv2d):
             names = name.split('.')
             lora_module_names.add(names[0] if len(names) == 1 else names[-1])
-    # print(lora_module_names)
-    # raise
     if 'lm_head' in lora_module_names: # needed for 16-bit
         lora_module_names.remove('lm_head')
     return list(lora_module_names)
@@ -656,7 +655,7 @@ class LazySupervisedDataset(Dataset):
         length_list = []
         for sample in self.list_data_dict:
             cur_len = sum(len(conv['value'].split()) for conv in sample['conversations'])
-            cur_len = cur_len if 'images' in sample else -cur_len
+            cur_len = cur_len if 'image' in sample else -cur_len
             length_list.append(cur_len)
         return length_list
 
@@ -702,11 +701,11 @@ class LazySupervisedDataset(Dataset):
 
         # image exist in the data
         if 'image' in self.list_data_dict[i]:
-            data_dict['images'] = image
+            data_dict['image'] = image
         elif self.data_args.is_multimodal:
             # image does not exist in the data, but the model is multimodal
             crop_size = self.data_args.image_processor.crop_size
-            data_dict['images'] = torch.zeros(3, crop_size['height'], crop_size['width'])
+            data_dict['image'] = torch.zeros(3, crop_size['height'], crop_size['width'])
         return data_dict
 
 
@@ -734,8 +733,8 @@ class DataCollatorForSupervisedDataset(object):
             attention_mask=input_ids.ne(self.tokenizer.pad_token_id),
         )
 
-        if 'images' in instances[0]:
-            images = [instance['images'] for instance in instances]
+        if 'image' in instances[0]:
+            images = [instance['image'] for instance in instances]
             if all(x is not None and x.shape == images[0].shape for x in images):
                 batch['images'] = torch.stack(images)
             else:
@@ -794,10 +793,56 @@ def train():
                 cache_dir=training_args.cache_dir,
                 **bnb_model_from_pretrained_args
             )
-        else:
+        elif 'lora' in model_args.model_name_or_path:
+            model = LlavaCrystalForCausalLM.from_pretrained(
+                model_args.model_name_or_path,
+                cache_dir=training_args.cache_dir,
+                trust_remote_code=True,
+                **bnb_model_from_pretrained_args
+                )
+            print('Trainable parameter:', sum(p.numel() for p in model.parameters() if p.requires_grad), sum(p.numel() for p in model.parameters()))
+            _no_grad_parameters = []
+            for n, p in model.named_parameters():
+                if not p.requires_grad:
+                    _no_grad_parameters.append(n)
+            print('Loading additional LLaVA weights...')
+            if os.path.exists(os.path.join(model_args.model_name_or_path, 'non_lora_trainables.bin')):
+                non_lora_trainables = torch.load(os.path.join(model_args.model_name_or_path, 'non_lora_trainables.bin'), map_location='cpu')
+            else:
+                # this is probably from HF Hub
+                from huggingface_hub import hf_hub_download
+                def load_from_hf(repo_id, filename, subfolder=None):
+                    cache_file = hf_hub_download(
+                        repo_id=repo_id,
+                        filename=filename,
+                        subfolder=subfolder)
+                    return torch.load(cache_file, map_location='cpu')
+                non_lora_trainables = load_from_hf(model_args.model_name_or_path, 'non_lora_trainables.bin')
+            non_lora_trainables = {(k[11:] if k.startswith('base_model.') else k): v for k, v in non_lora_trainables.items()}
+            if any(k.startswith('model.model.') for k in non_lora_trainables):
+                non_lora_trainables = {(k[6:] if k.startswith('model.') else k): v for k, v in non_lora_trainables.items()}
+            model.load_state_dict(non_lora_trainables, strict=False)
+            from peft import PeftModel
+            print('Loading LoRA weights...')
+            model = PeftModel.from_pretrained(model, model_args.model_name_or_path)
+            print('Merging LoRA weights...')
+            model = model.merge_and_unload()
+            print('Model is loaded...')
+            for n, p in model.named_parameters():
+                if n not in _no_grad_parameters:
+                    p.requires_grad = True
+            print('Trainable parameter:', sum(p.numel() for p in model.parameters() if p.requires_grad), sum(p.numel() for p in model.parameters()))
+        elif 'Llama-2' in model_args.model_name_or_path:
             model = LlavaLlamaForCausalLM.from_pretrained(
                 model_args.model_name_or_path,
                 cache_dir=training_args.cache_dir,
+                **bnb_model_from_pretrained_args
+            )
+        else:
+            model = LlavaCrystalForCausalLM.from_pretrained(
+                model_args.model_name_or_path,
+                cache_dir=training_args.cache_dir,
+                trust_remote_code=True,
                 **bnb_model_from_pretrained_args
             )
     else:
@@ -849,13 +894,30 @@ def train():
             model_max_length=training_args.model_max_length,
             padding_side="right"
         )
-    else:
+    elif 'lora' in model_args.model_name_or_path:
+        tokenizer = transformers.AutoTokenizer.from_pretrained(
+            model_base_path,
+            cache_dir=training_args.cache_dir,
+            model_max_length=training_args.model_max_length,
+            padding_side="right",
+            use_fast=False,
+        )
+    elif 'Llama-2' in model_args.model_name_or_path:
         tokenizer = transformers.AutoTokenizer.from_pretrained(
             model_args.model_name_or_path,
             cache_dir=training_args.cache_dir,
             model_max_length=training_args.model_max_length,
             padding_side="right",
             use_fast=False,
+        )
+    else:
+        tokenizer_path = os.path.join(os.getcwd(), 'llava/model/language_model/crystal_chat/')
+        tokenizer = AutoTokenizer.from_pretrained(
+            tokenizer_path,
+            cache_dir=training_args.cache_dir,
+            model_max_length=training_args.model_max_length,
+            padding_side="right",
+            trust_remote_code=True
         )
 
     if model_args.version == "v0":
