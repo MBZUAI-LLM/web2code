@@ -1,0 +1,9 @@
+from transformers import AutoConfig, AutoModel, AutoModelForCausalLM, AutoTokenizer
+from transformers.tokenization_utils_fast import PreTrainedTokenizerFast
+from configuration_crystalcoder import CrystalCoderConfig
+from modeling_crystalcoder import CrystalCoderModel, CrystalCoderLMHeadModel
+
+AutoConfig.register("crystalcoder", CrystalCoderConfig)
+AutoModel.register(CrystalCoderConfig, CrystalCoderModel)
+AutoModelForCausalLM.register(CrystalCoderConfig, CrystalCoderLMHeadModel)
+AutoTokenizer.register(CrystalCoderConfig, fast_tokenizer_class=PreTrainedTokenizerFast)

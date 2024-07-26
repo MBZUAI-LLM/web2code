@@ -1,6 +1,5 @@
 # Web2Code
 
-
 Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluation Framework for Multimodal LLMs](https://arxiv.org/abs/2406.20098)**.
 
 - **Institute**: Mohamed bin Zayed University of Artificial Intelligence
@@ -12,7 +11,12 @@ Official implementation of **[A Large-scale Webpage-to-Code Dataset and Evaluati
 </p>
 
 ## News
+**[2024/7/25]** The [training code](web2code/README.md) and checkpoints are released!
 **[2024/6/27]** The [paper](https://arxiv.org/abs/2406.20098) and [project page](https://mbzuai-llm.github.io/webpage2code/) are released!
+
+## Training Web2Code
+
+For training Web2Code model, refer to the [web2code training](web2code/README.md).
 
 ## Evaluation Benchmark Suite
 
