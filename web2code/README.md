@@ -80,6 +80,20 @@ After downloading all of them, organize the data as follows in `./playground/dat
 
 To prepare the Web2Code dataset, download the annotation and images of the final dataset [[Web2Code Dataset](https://huggingface.co/datasets/MBZUAI/Web2Code)]
 
+Web2Code_image
+```
+├── games
+│   ├── 01
+│   ├── ...
+│   └── 09
+├── jobs
+│   ├── 03
+│   ├── ...
+│   └── 13
+...
+
+
+
 2. Start training!
 
 Visual instruction tuning takes around 26 hours for the model on 16x A100 (40G).
