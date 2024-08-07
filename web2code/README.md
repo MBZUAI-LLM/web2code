@@ -31,7 +31,7 @@ python -m llava.serve.cli \
 ### Hyperparameters
 We use a similar set of hyperparameters as Vicuna in finetuning.  Both hyperparameters used in pretraining and finetuning are provided below.
 
-# TODO: Check this
+
 1. Pretraining
 
 | Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
@@ -42,7 +42,7 @@ We use a similar set of hyperparameters as Vicuna in finetuning.  Both hyperpara
 
 | Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| LLaVA-v1.5-13B | 128 | 2e-5 | 1 | 2048 | 0 |
+| Web2Code | 128 | 2e-5 | 1 | 2048 | 0 |
 
 ### Pretrain (feature alignment)
 
