@@ -48,4 +48,4 @@ If you find our work helpful for your research, please consider giving a star тн
 ```
 
 ## License
-![Data License](https://img.shields.io/badge/Data%20License-CC%20By%204.0-red.svg) **Usage and License Notices**: Usage and License Notices: The data is intended and licensed for research use only.  The dataset is CC BY 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
+![Data License](https://img.shields.io/badge/Data%20License-MIT-red.svg) **Usage and License Notices**: The data is intended and licensed for general use under the MIT License. The dataset is MIT licensed (permitting both commercial and non-commercial use) and models trained using the dataset can be used freely, provided proper attribution is given, and the license terms are followed.
